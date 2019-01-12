@@ -4,7 +4,8 @@
   "description": "Node js guide.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/cfaguilera20/node-js-guide/issues"
   },
-  "homepage": "https://github.com/cfaguilera20/node-js-guide#readme"
+  "homepage": "https://github.com/cfaguilera20/node-js-guide#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
 }
