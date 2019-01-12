@@ -1,25 +1,23 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-// app.use((req, res, next) => {
-//     console.log('First middleware!');
-//     next();
-// });
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use((req, res, next) => {
-//     console.log('Second middleware!');
-//     res.send('<h1>Assignment solved (almost!)</h1>');
-// });
+app.use('/add-product', (req, res, next) => {
+    res.send(
+        '<form action="/product" method="POST"><input type="title" name="title"><button type="submit">Add product</button></form>'
+    );
+});
 
-app.use('/users', (req, res, next) => {
-    console.log('/users middleware');
-    res.send('<h1>The middleware that handles just /users</h1>');
+app.use('/product', (req, res, next) => {
+    console.log(req.body);
+    res.redirect('/');
 });
 
 app.use('/', (req, res, next) => {
-    console.log('/ middleware');
-    res.send('<h1>The middleware that handles just /</h1>');
+    res.send('<h1>Hello form express!</h1>');
 });
 
 app.listen(3000);
