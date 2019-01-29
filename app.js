@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorsController = require('./controllers/errorsController');
-const mongoConnect = require('./util/database.js');
+const mongoConnect = require('./util/database.js').mongoConnect;
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use((req, res, next) => {
     //     req.user = user;
     //     next();
     // }).catch(err => console.log(err));
+    next();
 })
 
 app.use('/admin', adminRoutes);
