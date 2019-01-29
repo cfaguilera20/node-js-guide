@@ -8,8 +8,18 @@ volumes:
 ##
 services:
     ##
-    # Guide: mysql, node, phpmyadmin
+    # Guide: mongo, mysql, node, phpmyadmin
     ##    
+    microservice_guide_mongo:
+        container_name: guide-mongo
+        build: ./docker/microservices/guide/mongo/
+        working_dir: /usr/src
+        volumes:
+            - .:/usr/src
+            - ./data/mongo_data:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: homestead
+            MONGO_INITDB_ROOT_PASSWORD: secret
     microservice_guide_database:
         container_name: guide-database
         build: ./docker/microservices/guide/database/

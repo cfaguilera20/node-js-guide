@@ -1,9 +1,13 @@
-const Sequelize = require('sequelize');
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const sequelize = new Sequelize('homestead', 'homestead', 'secret', {
-    dialect: 'mysql',
-    host: 'guide-database',
-    operatorsAliases: false
-});
+const mongoConnect = (callback) => {
+    MongoClient.connect(process.env.DB_CONNECT, { useNewUrlParser: true })
+        .then(client => {
+            console.log('Connected!');
+            callback(client);
+        })
+        .catch(err => console.log(err));
+}
 
-module.exports = sequelize;
+module.exports = mongoConnect;
