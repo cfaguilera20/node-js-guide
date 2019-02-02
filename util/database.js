@@ -4,8 +4,13 @@ const MongoClient = mongodb.MongoClient;
 let _db;
 
 const mongoConnect = (callback) => {
-    MongoClient.connect(process.env.DB_CONNECT, {
-            useNewUrlParser: true
+    MongoClient.connect(process.env.DB_URI, {
+            auth: {
+                user: process.env.DB_USR,
+                password: process.env.DB_PWD,
+            },
+            useNewUrlParser: true,
+            retryWrites: true
         })
         .then(client => {
             console.log('Connected!');

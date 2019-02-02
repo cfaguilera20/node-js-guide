@@ -1,4 +1,4 @@
-const mongodb = require('mongodb')
+const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
@@ -14,6 +14,7 @@ class Product {
         const db = getDb();
         let dbOp;
         if (this._id) {
+            // Update the product
             dbOp = db
                 .collection('products')
                 .updateOne({
@@ -22,18 +23,14 @@ class Product {
                     $set: this
                 });
         } else {
-            dbOp = db
-                .collection('products')
-                .insertOne(this);
+            dbOp = db.collection('products').insertOne(this);
         }
-
         return dbOp
             .then(result => {
                 console.log(result);
             })
             .catch(err => {
-                console.log(err)
-                throw err;
+                console.log(err);
             });
     }
 
@@ -48,8 +45,7 @@ class Product {
                 return products;
             })
             .catch(err => {
-                console.log(err)
-                throw err;
+                console.log(err);
             });
     }
 
@@ -66,8 +62,7 @@ class Product {
                 return product;
             })
             .catch(err => {
-                console.log(err)
-                throw err;
+                console.log(err);
             });
     }
 }

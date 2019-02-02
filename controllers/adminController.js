@@ -52,10 +52,18 @@ exports.getEditProduct = (req, res, next) => {
 exports.postEditProduct = (req, res, next) => {
     const prodId = req.body.id;
     const updatedTitle = req.body.title;
-    const updatedImageUrl = req.body.imageUrl;
     const updatedPrice = req.body.price;
-    const updatedDescription = req.body.description;
-    product = new Product(updatedTitle, updatedPrice, updatedDescription, updatedImageUrl, new ObjectId(prodId))
+    const updatedImageUrl = req.body.imageUrl;
+    const updatedDesc = req.body.description;
+
+    const product = new Product(
+        updatedTitle,
+        updatedPrice,
+        updatedDesc,
+        updatedImageUrl,
+        new ObjectId(prodId)
+    );
+    product
         .save()
         .then(result => {
             console.log('Updated Product!')

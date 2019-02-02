@@ -20,6 +20,8 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: homestead
             MONGO_INITDB_ROOT_PASSWORD: secret
+        ports:
+            - "27017:27017"  
     microservice_guide_database:
         container_name: guide-database
         build: ./docker/microservices/guide/database/
