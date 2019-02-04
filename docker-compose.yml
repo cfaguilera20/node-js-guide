@@ -45,6 +45,8 @@ services:
             - .:/usr/src
         ports:
             - "3000:3000"
+        depends_on:
+            - microservice_guide_mongo
     microservice_guide_phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: guide-phpmyadmin
