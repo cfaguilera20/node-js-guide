@@ -41,7 +41,7 @@ class User {
         // });
         const updatedCart = {
             items: [{
-                ...product,
+                productId: new ObjectId(product._id),
                 quantity: 1
             }]
         };
