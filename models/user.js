@@ -5,7 +5,7 @@ const ObjectId = mongodb.ObjectId;
 
 class User {
     constructor(username, email, cart, id) {
-        this.username = username;
+        this.name = username;
         this.email = email;
         this.cart = cart;
         this._id = id ? new ObjectId(id) : null;
@@ -115,14 +115,23 @@ class User {
 
     addOrder() {
         const db = getDb();
-        return db
-            .collection('orders')
-            .insertOne(this.cart)
+        return this.getCart()
+            .then(products => {
+                const order = {
+                    items: products,
+                    user: {
+                        _id: new ObjectId(this._id),
+                        name: this.name,
+                    },
+                };
+                return db
+                    .collection('orders')
+                    .insertOne(order);
+            })
             .then(result => {
                 this.cart = {
                     items: []
                 };
-
                 db
                     .collection('users')
                     .updateOne({
@@ -135,6 +144,16 @@ class User {
                         }
                     });
             });
+    }
+
+    getOrders() {
+        const db = getDb();
+        // return db
+        //     .collection('orders')
+        //     .then()
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
     }
 
     static findById(userId) {
