@@ -148,12 +148,15 @@ class User {
 
     getOrders() {
         const db = getDb();
-        // return db
-        //     .collection('orders')
-        //     .then()
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
+        return db
+            .collection('orders')
+            .find({
+                'user._id': new ObjectId(this._id)
+            })
+            .toArray()
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     static findById(userId) {
