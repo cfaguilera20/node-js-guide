@@ -39,14 +39,15 @@ services:
             - "6667:3306"  
     microservice_guide_node:
         container_name: guide-node
-        build: ./docker/microservices/guide/node/
+        build: 
+            context: .
+            dockerfile: ./docker/microservices/guide/node/Dockerfile
         working_dir: /usr/src
         volumes:
+            - /usr/src/node_modules 
             - .:/usr/src
         ports:
             - "3000:3000"
-        depends_on:
-            - microservice_guide_mongo
     microservice_guide_phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: guide-phpmyadmin
