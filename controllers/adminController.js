@@ -84,15 +84,17 @@ exports.getProducts = (req, res, next) => {
                 pageTitle: 'Admin Products',
                 path: '/admin/products',
             });
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 };
 
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.id;
     Product
-        .deleteById(prodId)
+        .findByIdAndRemove(prodId)
         .then(() => {
             console.log('Destroyed Propduct!');
             res.redirect('/admin/products');
-        }).catch(err => console.log(err));;
+        })
+        .catch(err => console.log(err));;
 };
