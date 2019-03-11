@@ -63,18 +63,6 @@ mongoose
         useNewUrlParser: true
     })
     .then(result => {
-        User.findOne().then(user => {
-            if (!user) {
-                const user = new User({
-                    name: 'Carlos',
-                    email: 'admin@cfaguilera.mx',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
         app.listen(3000);
     })
     .catch(err => console.log(err));
