@@ -22,21 +22,21 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: secret
         ports:
             - "27017:27017"  
-    microservice_guide_database:
-        container_name: guide-database
-        build: ./docker/microservices/guide/database/
-        working_dir: /usr/src
-        volumes:
-            - .:/usr/src
-            - ./data/mysql_data:/var/lib/mysql
-        command: --default-authentication-plugin=mysql_native_password
-        environment:
-            - MYSQL_ROOT_PASSWORD=homestead
-            - MYSQL_DATABASE=homestead
-            - MYSQL_USER=homestead
-            - MYSQL_PASSWORD=secret
-        ports:
-            - "6667:3306"  
+    # microservice_guide_database:
+    #     container_name: guide-database
+    #     build: ./docker/microservices/guide/database/
+    #     working_dir: /usr/src
+    #     volumes:
+    #         - .:/usr/src
+    #         - ./data/mysql_data:/var/lib/mysql
+    #     command: --default-authentication-plugin=mysql_native_password
+    #     environment:
+    #         - MYSQL_ROOT_PASSWORD=homestead
+    #         - MYSQL_DATABASE=homestead
+    #         - MYSQL_USER=homestead
+    #         - MYSQL_PASSWORD=secret
+    #     ports:
+    #         - "6667:3306"  
     microservice_guide_node:
         container_name: guide-node
         build: 
@@ -48,13 +48,13 @@ services:
             - .:/usr/src
         ports:
             - "3000:3000"
-    microservice_guide_phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        container_name: guide-phpmyadmin
-        depends_on:
-            - microservice_guide_database
-        environment:
-            - PMA_HOSTS=microservice_guide_database
-            - PMA_PORT=6667
-        ports:
-            - "8000:80"
+    # microservice_guide_phpmyadmin:
+    #     image: phpmyadmin/phpmyadmin
+    #     container_name: guide-phpmyadmin
+    #     depends_on:
+    #         - microservice_guide_database
+    #     environment:
+    #         - PMA_HOSTS=microservice_guide_database
+    #         - PMA_PORT=6667
+    #     ports:
+    #         - "8000:80"
